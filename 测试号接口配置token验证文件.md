@@ -1,3 +1,42 @@
+- laravel
+```php
+namespace App\Http\Controllers\Front;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class WechatController extends Controller
+{
+
+    public function serve(Request $request)
+    {
+        $echoStr = $request->get('echostr');
+        $signature = $request->get("signature");
+        $timestamp = $request->get("timestamp");
+        $nonce =  $request->get("nonce");
+
+        $token = 'meinvbingyue';
+        $tmpArr = array($token, $timestamp, $nonce);
+        // use SORT_STRING rule
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+
+        if( $tmpStr == $signature ){
+            echo $echoStr;
+        }else{
+            echo 'valid fail - '.date('Y-m-d H:i');
+        }
+
+    }
+
+}
+
+```
+
+----
+
+- 单个文件
 ```php
 <?php
 /**
