@@ -1,5 +1,11 @@
 - laravel
 ```php
+routes\web.php
+
+Route::any('/', 'WeChatController@serve');
+```
+
+```php
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
